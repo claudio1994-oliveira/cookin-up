@@ -1,12 +1,16 @@
 <script lang="ts">
 import { ICategoria } from '@/types/Categoria'
 import { PropType } from 'vue'
+import Tag from './Tag.vue'
 export default {
     props: {
         categoria: {
             type: Object as PropType<ICategoria>,
             required: true
         }
+    },
+    components: {
+        Tag
     }
 }
 </script>
@@ -18,7 +22,9 @@ export default {
         <h2 class="paragrafo-lg categoria__nome">{{ categoria.nome }}</h2>
 
         <p class="paragrafo categoria__ingredientes">
-            <span v-for="ingrediente in categoria.ingredientes" :key="ingrediente">{{ ingrediente }}</span>
+            <span v-for="ingrediente in categoria.ingredientes" :key="ingrediente">
+                <Tag :texto="ingrediente" />
+            </span>
         </p>
     </header>
 </article> 
