@@ -4,9 +4,13 @@ import { obterCategorias } from './http/index'
 export default {
   data() {
     return {
-      categorias: obterCategorias()
+      categorias: []
     }
-  }
+    
+  },
+  async created() {
+      this.categorias = await obterCategorias()
+    },
 }
 </script>
 
@@ -41,6 +45,7 @@ export default {
 
 .instrucoes {
   margin-bottom: 2rem;
+  text-align: center;
 }
 
 .categorias {
