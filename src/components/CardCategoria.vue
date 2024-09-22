@@ -12,7 +12,7 @@ export default {
     components: {
         IngredienteSelecionavel
     },
-    emits: ['adicionarIngrediente']
+    emits: ['adicionarIngrediente', 'removerIngrediente']
 }
 </script>
 <template>
@@ -24,7 +24,10 @@ export default {
 
         <p class="paragrafo categoria__ingredientes">
             <span v-for="ingrediente in categoria.ingredientes" :key="ingrediente">
-                <IngredienteSelecionavel :ingrediente="ingrediente" @adicionar-ingrediente="$emit('adicionarIngrediente', $event)" />
+                <IngredienteSelecionavel :ingrediente="ingrediente" 
+                @adicionar-ingrediente="$emit('adicionarIngrediente', $event)"
+                @remover-ingrediente="$emit('removerIngrediente', $event)"
+                />
                 
             </span>
         </p>

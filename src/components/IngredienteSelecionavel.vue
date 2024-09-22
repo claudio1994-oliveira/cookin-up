@@ -25,7 +25,7 @@ export default {
         } else {
             this.$emit('remover-ingrediente', this.ingrediente);
         }
-    }
+    },
   },
   emits: ['adicionar-ingrediente', 'remover-ingrediente']
 }

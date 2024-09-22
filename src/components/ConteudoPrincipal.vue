@@ -19,6 +19,9 @@ export default {
   methods: {
     adicionarIngrediente(ingrediente: string) {
       ingredientes.value.push(ingrediente)
+    },
+    removerIngrediente(ingrediente: string) {
+      ingredientes.value = ingredientes.value.filter(item => item !== ingrediente)
     }
   }
 }
@@ -26,7 +29,10 @@ export default {
 <template>
   <main class="conteudo-principal">
     <SuaLista :ingredientes="ingredientes" />
-    <SelecionarIngredientes @adicionar-ingrediente="adicionarIngrediente($event)" />
+    <SelecionarIngredientes 
+    @adicionar-ingrediente="adicionarIngrediente($event)"
+    @remover-ingrediente="removerIngrediente"
+    />
   </main>
 </template>
 <style scoped>
