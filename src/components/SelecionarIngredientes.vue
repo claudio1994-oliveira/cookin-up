@@ -1,6 +1,7 @@
 <script lang="ts">
 import { obterCategorias } from './http/index'
 import CadCategoria from './CardCategoria.vue'
+import BotaoPrincipal from './BotaoPrincipal.vue'
 
 export default {
   data() {
@@ -10,7 +11,8 @@ export default {
     
   },
   components: {
-    CadCategoria
+    CadCategoria,
+    BotaoPrincipal
   },
   async created() {
       this.categorias = await obterCategorias()
@@ -34,10 +36,18 @@ export default {
       </li>
     </ul>
     <p class="paragrafo dica">*Atenção: consideramos que você tem em casa sal, pimenta e alho.</p>
+    <div class="btn-principal">
+      <BotaoPrincipal texto="Buscar receitas!" />
+    </div>
+   
   </section>
 </template>
 
 <style scoped>
+.btn-principal {
+  display: flex;
+  justify-content: center;
+}
 .selecionar-ingredientes {
   display: flex;
   flex-direction: column;
