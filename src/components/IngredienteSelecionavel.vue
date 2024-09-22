@@ -16,10 +16,22 @@ export default {
             selecionado: false
         }
     },
+    
+  methods: {
+    adicionarIngrediente() {
+        this.selecionado = !this.selecionado
+        if (this.selecionado) {
+            this.$emit('adicionar-ingrediente', this.ingrediente);
+        } else {
+            this.$emit('remover-ingrediente', this.ingrediente);
+        }
+    }
+  },
+  emits: ['adicionar-ingrediente', 'remover-ingrediente']
 }
 </script>
 <template>
-    <button class="ingrediente" @click="selecionado = !selecionado" :aria-pressed="selecionado">
+    <button class="ingrediente" @click="adicionarIngrediente" :aria-pressed="selecionado">
         <Tag :texto="ingrediente" :ativa="selecionado" />
     </button>
 </template>

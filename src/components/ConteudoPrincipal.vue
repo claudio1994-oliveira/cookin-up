@@ -3,7 +3,7 @@ import { ref } from 'vue'
 import SelecionarIngredientes from './SelecionarIngredientes.vue'
 import SuaLista from './SuaLista.vue'
 
-const ingredientes = ref<string[]>(['Alho', 'Pimenta', 'Coentro', 'Sal', 'Pimentão', 'Cebola'])
+const ingredientes = ref<string[]>([])
 
 export default {
   name: 'ConteudoPrincipal',
@@ -15,13 +15,18 @@ export default {
   components: {
     SelecionarIngredientes,
     SuaLista
+  },
+  methods: {
+    adicionarIngrediente(ingrediente: string) {
+      ingredientes.value.push(ingrediente)
+    }
   }
 }
 </script>
 <template>
   <main class="conteudo-principal">
     <SuaLista :ingredientes="ingredientes" />
-    <SelecionarIngredientes />
+    <SelecionarIngredientes @adicionar-ingrediente="adicionarIngrediente($event)" />
   </main>
 </template>
 <style scoped>

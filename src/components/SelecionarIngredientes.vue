@@ -15,6 +15,7 @@ export default {
   async created() {
       this.categorias = await obterCategorias()
   },
+  emits: ['adicionarIngrediente']
 }
 </script>
 
@@ -27,7 +28,7 @@ export default {
     <ul class="categorias">
       <li v-for="categoria in categorias" :key="categoria.nome">
         
-        <CadCategoria :categoria="categoria" />
+        <CadCategoria :categoria="categoria" @adicionar-ingrediente="$emit('adicionarIngrediente', $event)" />
       </li>
     </ul>
     <p class="paragrafo dica">*Atenção: consideramos que você tem em casa sal, pimenta e alho.</p>
