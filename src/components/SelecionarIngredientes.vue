@@ -8,16 +8,15 @@ export default {
     return {
       categorias: []
     }
-    
   },
   components: {
     CadCategoria,
     BotaoPrincipal
   },
   async created() {
-      this.categorias = await obterCategorias()
+    this.categorias = await obterCategorias()
   },
-  emits: ['adicionarIngrediente', 'removerIngrediente']
+  emits: ['adicionarIngrediente', 'removerIngrediente', 'buscarReceitas']
 }
 </script>
 
@@ -29,17 +28,17 @@ export default {
     </p>
     <ul class="categorias">
       <li v-for="categoria in categorias" :key="categoria.nome">
-        
-        <CadCategoria :categoria="categoria" 
-        @adicionar-ingrediente="$emit('adicionarIngrediente', $event)" 
-        @remover-ingrediente="$emit('removerIngrediente', $event)" />
+        <CadCategoria
+          :categoria="categoria"
+          @adicionar-ingrediente="$emit('adicionarIngrediente', $event)"
+          @remover-ingrediente="$emit('removerIngrediente', $event)"
+        />
       </li>
     </ul>
     <p class="paragrafo dica">*Atenção: consideramos que você tem em casa sal, pimenta e alho.</p>
     <div class="btn-principal">
-      <BotaoPrincipal texto="Buscar receitas!" />
+      <BotaoPrincipal texto="Buscar receitas!" @click="$emit('buscarReceitas')" />
     </div>
-   
   </section>
 </template>
 
