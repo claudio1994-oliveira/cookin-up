@@ -4,10 +4,10 @@ import SelecionarIngredientes from './SelecionarIngredientes.vue'
 import SuaLista from './SuaLista.vue'
 import MostraReceitas from './MostraReceitas.vue'
 
-type Pagina = 'SelecionarIngrefientes' | 'MostrarReceitas'
+type Pagina = 'SelecionarIngredientes' | 'MostrarReceitas'
 
 const ingredientes = ref<string[]>([])
-const conteudo = ref<string>('SelecionarIngrefientes' as Pagina)
+const conteudo = ref<string>('SelecionarIngredientes' as Pagina)
 
 export default {
   name: 'ConteudoPrincipal',
@@ -40,12 +40,15 @@ export default {
     <SuaLista :ingredientes="ingredientes" />
 
     <SelecionarIngredientes
-      v-if="conteudo === 'SelecionarIngrefientes'"
+      v-if="conteudo === 'SelecionarIngredientes'"
       @adicionar-ingrediente="adicionarIngrediente($event)"
       @remover-ingrediente="removerIngrediente"
       @buscar-receitas="navegar('MostrarReceitas')"
     />
-    <MostraReceitas v-else-if="conteudo === 'MostrarReceitas'" />
+    <MostraReceitas
+      v-else-if="conteudo === 'MostrarReceitas'"
+      @editar-receitas="navegar('SelecionarIngredientes')"
+    />
   </main>
 </template>
 <style scoped>
